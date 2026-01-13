@@ -1,26 +1,23 @@
 "use client";
 
-import { useState } from "react";
-
-import { ChevronRightIcon } from "lucide-react";
-import { FileIcon, FolderIcon } from "@react-symbols/icons/utils";
-
-import { cn } from "@/lib/utils";
-
+import { useEditor } from "@/features/editor/hooks/use-editor";
 import {
   useCreateFile,
   useCreateFolder,
+  useDeleteFile,
   useFolderContents,
   useRenameFile,
-  useDeleteFile,
 } from "@/features/projects/hooks/use-files";
-import { getItemPadding } from "./constants";
-import { LoadingRow } from "./loading-row";
-import { CreateInput } from "./create-input";
+import { cn } from "@/lib/utils";
+import { FileIcon, FolderIcon } from "@react-symbols/icons/utils";
+import { ChevronRightIcon } from "lucide-react";
+import { useState } from "react";
 import { Doc, Id } from "../../../../../convex/_generated/dataModel";
+import { getItemPadding } from "./constants";
+import { CreateInput } from "./create-input";
+import { LoadingRow } from "./loading-row";
 import { RenameInput } from "./rename-input";
 import { TreeItemWrapper } from "./tree-item-wrapper";
-import { useEditor } from "@/features/editor/hooks/use-editor";
 
 const Tree = ({
   item,
