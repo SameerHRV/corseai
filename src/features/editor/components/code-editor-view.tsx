@@ -1,6 +1,6 @@
 import { useFile, useUpdateFile } from "@/features/projects/hooks/use-files";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { useEditor } from "../hooks/use-editor";
 import CodeEditor from "./code-editor";
@@ -17,6 +17,15 @@ const CodeEditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
 
   const isActiveFileBinary = activeFile && activeFile.storageId;
   const isActiveFileText = activeFile && !activeFile.storageId;
+
+  // Cleanup pending debounced updates on unmount or file change
+  useEffect(() => {
+    return () => {
+      if (timeOutRef.current) {
+        clearTimeout(timeOutRef.current);
+      }
+    };
+  }, [activeTabId]);
 
   return (
     <div className="h-full flex flex-col">

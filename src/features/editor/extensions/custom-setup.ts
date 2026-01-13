@@ -10,6 +10,8 @@ import {
   highlightActiveLineGutter,
 } from "@codemirror/view";
 import { Extension, EditorState } from "@codemirror/state";
+import { quickEditState } from "./quick-edit";
+import { selectionTooltip } from "./selection-tooltip";
 import {
   defaultHighlightStyle,
   syntaxHighlighting,
@@ -67,4 +69,6 @@ export const customSetup: Extension = (() => [
     ...completionKeymap,
     ...lintKeymap,
   ]),
+  quickEditState,
+  selectionTooltip(),
 ])();
